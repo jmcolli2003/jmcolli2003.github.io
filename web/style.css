@@ -1,0 +1,288 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    height: 8vh;
+    background-color: #186E4B;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vh 2vw;
+    
+
+
+
+}
+
+.nav-title{
+    font-size: 2vh;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding-left: 2vw;
+
+}
+
+.nav-box ul a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.8vh;
+    font-weight: bold;
+    transition: opacity 0.1s ease-in-out;
+    padding: 1vw;
+}
+
+/*Changes opacity on hover*/
+.nav-box ul a:hover {
+    opacity: 0.7; 
+}
+
+footer{
+    text-align: center;
+    padding: 5vh;
+    background-color: #186E4B;
+}
+
+footer p{
+    color: white;
+    font-size: 1.5vh;
+    font-weight: bold;
+
+}
+
+main{
+    padding: 8px;
+}
+
+.background-and-description {
+    display: flex;
+    padding: 5vh;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 80vw;
+    max-height: 50vh;
+    height: 50vh;
+    margin: auto;
+}
+.background-column {
+    flex: 1;
+    height: 100%;
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+    text-align: justify;
+    overflow-y: auto; /*Scroll if text overflows*/
+    box-sizing: border-box;
+    color: #186E4B;
+}
+
+.description-column {
+    flex: 1;
+    height: 100%;
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+    text-align: justify;
+    overflow-y: auto; /*Scroll if text overflows*/
+    box-sizing: border-box;
+    color: #186E4B;
+}
+
+.background-column h1 {
+    font-family: 'Marker Felt';
+    font-size: 4vh;
+    text-align: center;
+}
+
+.background-column p {
+    font-size: 2vh;
+    
+}
+
+.description-column h1 {
+    font-family: 'Marker Felt';
+    font-size: 4vh;
+    text-align: center;
+}
+
+.description-column p {
+    font-size: 2vh;
+    
+}
+
+
+@media (max-width: 650px) {
+    .background-column{
+        overflow: visible;
+        width: 100%;
+    }
+    .description-column {
+        overflow: visible; /*No scrolling, text is fully visible*/
+        width: 100%;
+    }
+}
+
+
+.text-blk {
+  line-height: 25px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  color: #186E4B;
+  
+}
+
+
+.responsive-container-block {
+  min-height: 75px;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  justify-content: flex-start;
+}
+
+.inner-container {
+  max-width: 1320px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin-top: 80px;
+  margin-right: auto;
+  margin-bottom: 100px;
+  margin-left: 0px;
+}
+
+.section-head-text {
+  font-size: 50px;
+  line-height: 60px;
+  font-weight: 700;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 18px;
+  margin-left: 0px;
+
+  font-family: 'Marker Felt';
+}
+
+
+
+.card {
+    width: 750px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 6px 24px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background-color: rgb(255, 255, 255);
+    max-width: 750px;
+    padding-top: 40px;
+    padding-right: 30px;
+    padding-bottom: 40px;
+    padding-left: 30px;
+}
+
+.img-wrapper {
+    width: 175px;
+    height: 175px;
+    clip-path: circle(50% at 50% 50%);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 28px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    line-height: 27px;
+    text-decoration: none;
+    transition: opacity 0.1s ease-in-out;
+}
+
+.name:hover {
+    opacity: 0.7; 
+}
+
+
+.outer-container {
+  background-color: rgb(250, 250, 250);
+  padding-top: 0px;
+  padding-right: 50px;
+  padding-bottom: 0px;
+  padding-left: 50px;
+}
+
+.container-block {
+  min-height: 75px;
+  height: fit-content;
+  width: 100%;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  display: block;
+}
+
+.swiper.team-swiper {
+  max-width: 100%;
+  width: 100%;
+}
+
+.swiper-slide {
+  position: static;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Individual image adjustments */
+.kyle-img {
+    object-position: center top; /* Adjust as needed */
+}
+
+.ben-img {
+    object-position: center center; /* Adjust as needed */
+}
+
+.jackson-img {
+    object-position: center center; /* Adjust as needed */
+}
+
+.hector-img {
+    object-position: center 25%; /* Adjust as needed */
+}
+
+.lauren-img {
+    object-position: center center; /* Adjust as needed */
+}
