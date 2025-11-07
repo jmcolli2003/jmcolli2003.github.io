@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width"/>
     <link rel="stylesheet" href="style.css">
     <title>TJA1 Website</title>
 </head>
@@ -25,20 +25,27 @@
     </nav>
 
     <main>
-        <h1>Car Simulation</h1>
-
-        <div id="road">
-            <div class="lane-marker"></div>
-            <div class="lane-marker"></div>
-            <div id="car"></div>
-        </div>
-
-        <div id="controls">
-            <button id="start">Start</button>
-            <button id="stop">Stop</button>
-            <button id="toggle-tjas">Toggle TJAS</button>
-            <button id="toggle-cruise">Toggle Cruise Control</button>
-            <button id="toggle-lane">Toggle Lane Management</button>
+        <h1>Traffic Jam Assist Simulation</h1>
+        <div id="simulation-container">
+            <div id="controls">
+                <div id="dashboard">
+                    <button id="toggle-tjas">Traffic Jam Assist</button>
+                    <button id="toggle-cruise">Adaptive Cruise Control</button>
+                    <button id="toggle-lane">Lane Management</button>
+                </div>
+                <div id=start-stop>
+                    <button id="start">Start</button>
+                    <button id="stop">Stop</button>
+                </div>
+            </div>
+            
+            <div id="road">
+                <div class="lane-marker" id="lane1"></div>
+                <div class="lane-marker" id="lane2"></div>
+                <div class="yellow-lane" id="yellow-lane1"></div>
+                <div class="yellow-lane" id="yellow-lane2"></div>
+                <div id="car"></div>
+            </div>
         </div>
     </main>
 

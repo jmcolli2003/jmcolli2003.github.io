@@ -176,67 +176,121 @@ main {
 .lauren-img { object-position: center; }
 
 /* ================== Car Simulation ================== */
-#road {
-    position: relative;
-    width: 800px;
-    height: 200px;
-    margin: 40px auto;
-    background-color: #555;
-    border: 2px solid black;
+#simulation-container {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    column-gap: 1%;
+    margin: 20px auto;
     overflow: hidden;
-    border-radius: 5px;
 }
 
-/* Yellow center line (horizontal) */
-#road::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
+/* Controls on the left */
+#controls {
+    width: 40%;
+    height: 600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+    border-radius: 7px;
+    background-color: #d3d3d3;
+}
+
+#start-stop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+    position: relative;
+}
+
+#dashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+    position: relative;
+}
+
+button {
     width: 100%;
-    height: 6px;
-    background-color: yellow;
-    transform: translateY(-50%);
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button.toggle-active {
+    background-color: #2196F3;  /* blue when active */
+    color: white;
+    border: 2px solid grey;
+}
+
+#start {
+    background-color: green;
+    color: white;
+}
+
+#stop {
+    background-color: #e50000;
+    color: white;
+}
+
+/* Road on the right */
+#road {
+    width: 68%;
+    height: 400px;
+    position: relative;
+    background-color: #555;
+    border-radius: 7px;
+    overflow: hidden;
 }
 
 /* White lane markers (horizontal dashed lines) */
 .lane-marker {
     position: absolute;
+    left: 0;
     width: 100%;
     height: 6px;
     background: repeating-linear-gradient(
         to right,
-        white 0 30px,
-        transparent 30px 60px
+        white 0 40px,
+        transparent 40px 80px
     );
+    opacity: 0.8;
 }
 
-.lane-marker:nth-child(1) { top: 25%; }
-.lane-marker:nth-child(2) { top: 75%; }
+.lane-marker:nth-child(1) { top: 33%; }
+.lane-marker:nth-child(2) { top: 66%; }
+
+.yellow-lane {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    overflow: hidden;
+    background-color: #F7B500;
+}
+
+#yellow-lane1 {top: 5%}
+#yellow-lane2 {bottom: 5%}
 
 /* Car */
 #car {
-    position: absolute;
-    left: 0;
+    position: relative;
+    left: 15%;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
-    height: 30px;
-    background: #18453B;
-    border-radius: 5px;
-}
+    width: 180px;
+    height: 90px;
+    background-image: url("images/Green-car-ariel.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 
-/* Controls */
-#controls {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
 }
