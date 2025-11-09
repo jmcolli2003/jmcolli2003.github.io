@@ -28,7 +28,15 @@
         <h1>Traffic Jam Assist Simulation</h1>
         <div id="simulation-container">
             <div id="controls">
-                <div id="dashboard">
+                <div id="follow-distance-control">
+                    <label for="follow-distance">Follow Distance:</label>
+                        <select id="follow-distance">
+                            <option value="short">Short</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="long">Long</option>
+                        </select>
+                </div>
+                <div id="system-toggles">
                     <button id="toggle-tjas">Traffic Jam Assist</button>
                     <button id="toggle-cruise">Adaptive Cruise Control</button>
                     <button id="toggle-lane">Lane Management</button>
@@ -44,7 +52,15 @@
                 <div class="lane-marker" id="lane2"></div>
                 <div class="yellow-lane" id="yellow-lane1"></div>
                 <div class="yellow-lane" id="yellow-lane2"></div>
-                <div id="car"></div>
+                <div class="car" id="main-car"></div>
+                <div class="car" id="car-A"></div>
+                <div class="car" id="car-B"></div>
+                <div class="car" id="car-C"></div>
+                <div class="car" id="car-D"></div>
+                <div class="car" id="car-E"></div>
+                <div class="car" id="car-F"></div>
+                <div class="car" id="car-G"></div>
+                <div class="car" id="car-H"></div>
             </div>
         </div>
     </main>

@@ -188,7 +188,7 @@ main {
     overflow: hidden;
 }
 
-/* Controls on the left */
+/* Control box on the left */
 #controls {
     width: 40%;
     height: 600px;
@@ -201,6 +201,7 @@ main {
     background-color: #d3d3d3;
 }
 
+/* start and stop buttons */
 #start-stop {
     display: flex;
     flex-direction: row;
@@ -209,7 +210,18 @@ main {
     position: relative;
 }
 
-#dashboard {
+#start {
+    background-color: green;
+    color: white;
+}
+
+#stop {
+    background-color: #e50000;
+    color: white;
+}
+
+/* toggles for TJA, ACC, LM */
+#system-toggles {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -232,14 +244,31 @@ button.toggle-active {
     border: 2px solid grey;
 }
 
-#start {
-    background-color: green;
-    color: white;
+/* follow distance selection */
+#follow-distance-control {
+    position: relative;
+    display: flex;
+    align-items: center; 
+    gap: 8px; /* space between label and select */
+    margin-left: 20px;
 }
 
-#stop {
-    background-color: #e50000;
-    color: white;
+#follow-distance {
+    padding: 8px 12px;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    justify-content: left;
+    left: 5%;
+    width: 300px;
+}
+
+.follow-distance label {
+    left: 10px;
+    font-size: 20px;
+    color: white; /* or whatever fits your theme */
+    font-weight: bold;
 }
 
 /* Road on the right */
@@ -282,15 +311,67 @@ button.toggle-active {
 #yellow-lane2 {bottom: 5%}
 
 /* Car */
-#car {
-    position: relative;
+.car {
+    position: absolute;
+    width: 180px;
+    height: 90px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("./images/blue-car-ariel.png"); /* default picture is blue car */
+    transition: left 1s ease;  /* Smooth horizontal movement */
+}
+
+/* Map of cars:
+    A     B   C
+  Main   D  E
+  F     G    H
+  */
+
+#main-car {
     left: 15%;
     top: 50%;
     transform: translateY(-50%);
-    width: 180px;
-    height: 90px;
-    background-image: url("images/Green-car-ariel.png");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url("./images/Green-car-ariel.png");
+}
 
+#car-A {
+    left: 20%;
+    top: 9%;
+}
+
+#car-B {
+    left: 55%;
+    top: 9%;
+}
+
+#car-C {
+    left: 85%;
+    top: 9%;
+}
+
+#car-D {
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#car-E {
+    left: 75%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#car-F {
+    left: 10%;
+    bottom: 9%;
+}
+
+#car-G {
+    left: 45%;
+    bottom: 9%;
+}
+
+#car-H {
+    left: 80%;
+    bottom: 9%;
 }

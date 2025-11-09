@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const lanes = document.querySelectorAll('.lane-marker');
-    const car = document.getElementById('car');
+    const mainCar = document.getElementById('main-car');
+    const frontCar = document.getElementById('car-D');
+    const distanceSelect = document.getElementById('follow-distance');
 
     let speed = 0;
     let offset = 0;
+    let followDistance = 'medium'; // default
     let running = false;
     let animationId;
 
@@ -40,6 +43,41 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('toggle-lane').classList.toggle('toggle-active', lane);
     };
 
+    // Function to update the front car's position based on follow distance
+    function updateFollowDistance() {
+        let pos;
+
+        let posPercent;
+        const frontCarRect = frontCar.getBoundingClientRect();
+        const roadRect = document.getElementById('road').getBoundingClientRect();
+        let carWidth = 180;
+        let frontCarLeft = frontCarRect.left - roadRect.left;
+
+        switch (followDistance) {
+            case 'short':
+                pos = frontCarLeft - (carWidth * 1.5);  // small gap
+                break;
+            case 'medium':
+                pos = frontCarLeft - (carWidth * 2); // medium gap
+                break;
+            case 'long':
+                pos = frontCarLeft - (carWidth * 2.5); // large gap
+                break;
+        }
+        
+        posPercent = (pos / roadRect.width) * 100;
+
+        mainCar.style.left = `${posPercent}%`;
+        
+    }
+
+    // Update when dropdown changes
+    distanceSelect.addEventListener('change', (e) => {
+        followDistance = e.target.value;
+        updateFollowDistance();
+    });
+    
+
     function updateSpeed() {
         speed = 0;
         if (tjas) speed += 4;
@@ -58,5 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
         animationId = requestAnimationFrame(animate);
     }
 
+    updateFollowDistance();
     updateSpeed();
 });
