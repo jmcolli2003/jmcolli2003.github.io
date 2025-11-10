@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('start').onclick = () => {
         if (!running) {
             running = true;
+            updateFollowDistance();
             animate();
         }
     };
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tjas = !tjas;
         updateSpeed();
         updateDashboard();
-        if (tjas){updateFollowDistance();}
+        if (tjas && running){updateFollowDistance();}
         document.getElementById('toggle-tjas').classList.toggle('toggle-active', tjas);
     };
 
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to update the front car's position based on follow distance
     function updateFollowDistance() {
-        if (tjas){     
+        if (tjas && running){     
             let pos;
 
             let posPercent;
