@@ -201,6 +201,46 @@ main {
     background-color: #d3d3d3;
 }
 
+/* Dashboard at the top of controls */
+#dashboard {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#dashboard h2 {
+    margin: 0 0 15px 0;
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.status-message {
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.status-message.disabled {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 2px solid #ef5350;
+}
+
+.status-message.enabled {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 2px solid #66bb6a;
+}
+
 /* start and stop buttons */
 #start-stop {
     display: flex;

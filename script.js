@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainCar = document.getElementById('main-car');
     const frontCar = document.getElementById('car-D');
     const distanceSelect = document.getElementById('follow-distance');
+    const tjaStatusDisplay = document.getElementById('tja-status');
 
     let speed = 0;
     let offset = 0;
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('toggle-tjas').onclick = () => {
         tjas = !tjas;
         updateSpeed();
+        updateDashboard();
         document.getElementById('toggle-tjas').classList.toggle('toggle-active', tjas);
     };
 
@@ -96,6 +98,19 @@ document.addEventListener('DOMContentLoaded', () => {
         animationId = requestAnimationFrame(animate);
     }
 
+    // Function to update the dashboard display
+    function updateDashboard() {
+        if (tjas) {
+            tjaStatusDisplay.textContent = 'TJA Enabled, Driver not in Control';
+            tjaStatusDisplay.classList.add('enabled');
+            tjaStatusDisplay.classList.remove('disabled');
+        } else {
+            tjaStatusDisplay.textContent = 'TJA Disabled, Driver in Control';
+            tjaStatusDisplay.classList.add('disabled');
+            tjaStatusDisplay.classList.remove('enabled');
+        }
+    }
     updateFollowDistance();
     updateSpeed();
+    updateDashboard();
 });
