@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tjas = !tjas;
         updateSpeed();
         updateDashboard();
+        if (tjas){updateFollowDistance();}
         document.getElementById('toggle-tjas').classList.toggle('toggle-active', tjas);
     };
 
@@ -51,30 +52,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to update the front car's position based on follow distance
     function updateFollowDistance() {
-        let pos;
+        if (tjas){     
+            let pos;
 
-        let posPercent;
-        const frontCarRect = frontCar.getBoundingClientRect();
-        const roadRect = document.getElementById('road').getBoundingClientRect();
-        let carWidth = 180;
-        let frontCarLeft = frontCarRect.left - roadRect.left;
+            let posPercent;
+            const frontCarRect = frontCar.getBoundingClientRect();
+            const roadRect = document.getElementById('road').getBoundingClientRect();
+            let carWidth = 180;
+            let frontCarLeft = frontCarRect.left - roadRect.left;
 
-        switch (followDistance) {
-            case 'short':
-                pos = frontCarLeft - (carWidth * 1.5);  // small gap
-                break;
-            case 'medium':
-                pos = frontCarLeft - (carWidth * 2); // medium gap
-                break;
-            case 'long':
-                pos = frontCarLeft - (carWidth * 2.5); // large gap
-                break;
+            switch (followDistance) {
+                case 'short':
+                    pos = frontCarLeft - (carWidth * 1.5);  // small gap
+                    break;
+                case 'medium':
+                    pos = frontCarLeft - (carWidth * 2); // medium gap
+                    break;
+                case 'long':
+                    pos = frontCarLeft - (carWidth * 2.5); // large gap
+                    break;
+            }
+            
+            posPercent = (pos / roadRect.width) * 100;
+
+            mainCar.style.left = `${posPercent}%`;
         }
-        
-        posPercent = (pos / roadRect.width) * 100;
-
-        mainCar.style.left = `${posPercent}%`;
-        
     }
 
     // Update when dropdown changes
