@@ -327,8 +327,7 @@ button.toggle-active {
     position: relative;
     display: flex;
     align-items: center; 
-    gap: 8px; /* space between label and select */
-    margin-left: 20px;
+    gap: 8px; 
 }
 
 #follow-distance {
@@ -345,7 +344,7 @@ button.toggle-active {
 .follow-distance label {
     left: 10px;
     font-size: 20px;
-    color: white; /* or whatever fits your theme */
+    color: white; 
     font-weight: bold;
 }
 

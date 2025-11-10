@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const distanceSelect = document.getElementById('follow-distance');
     const tjaStatusDisplay = document.getElementById('tja-status');
     const speedDisplay = document.getElementById('speed-value');
+    const followDistanceControls = document.getElementById("follow-distance-control");
 
     let speed = 0;
     let offset = 0;
@@ -36,7 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
         tjas = !tjas;
         updateSpeed();
         updateDashboard();
-        if (tjas && running){updateFollowDistance();}
+        if (tjas && running){ updateFollowDistance(); }
+
+        if(tjas) { 
+            followDistanceControls.style.display = "block"; 
+            updateFollowDistance();
+        }
+        else { followDistanceControls.style.display = "none"; }
+
         document.getElementById('toggle-tjas').classList.toggle('toggle-active', tjas);
     };
 
