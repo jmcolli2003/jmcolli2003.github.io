@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const frontCar = document.getElementById('car-D');
     const distanceSelect = document.getElementById('follow-distance');
     const tjaStatusDisplay = document.getElementById('tja-status');
+    const speedDisplay = document.getElementById('speed-value');
 
     let speed = 0;
     let offset = 0;
@@ -14,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let tjas = false;
     let cruise = false;
     let lane = false;
+
+    // Speed units to km conversion factor
+    const speedtoKmh = 15; 
 
     document.getElementById('start').onclick = () => {
         if (!running) {
@@ -85,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (tjas) speed += 4;
         if (cruise) speed += 2;
         if (!tjas && !cruise) speed = 1; // default slow speed
+        updateSpeedometer();
     }
 
     function animate() {
@@ -110,7 +115,14 @@ document.addEventListener('DOMContentLoaded', () => {
             tjaStatusDisplay.classList.remove('enabled');
         }
     }
+
+    // Function to update speedometer 
+    function updateSpeedometer(){
+        const kmh = Math.round(speed * speedtoKmh);
+        speedDisplay.textContent = kmh;
+    }
     updateFollowDistance();
     updateSpeed();
     updateDashboard();
+    updateSpeedometer();
 });
