@@ -227,6 +227,7 @@ main {
     font-weight: bold;
     text-align: center;
     transition: all 0.3s ease;
+    margin-bottom: 10px;
 }
 
 .status-message.disabled {
@@ -247,6 +248,7 @@ main {
     border-radius: 6px;
     padding: 15px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .speedometer-label {
@@ -278,6 +280,53 @@ main {
     font-weight: 600;
 }
 
+/* Gas Pedal styles */
+#gas-pedal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#gas-pedal {
+    width: 80%;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+#gas-pedal:hover:not(:disabled) {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#gas-pedal:active:not(:disabled) {
+    background-color: #3d8b40;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#gas-pedal.disabled-pedal {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+#gas-pedal-status {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
 
 /* start and stop buttons */
 #start-stop {
@@ -327,7 +376,8 @@ button.toggle-active {
     position: relative;
     display: flex;
     align-items: center; 
-    gap: 8px; 
+    gap: 8px; /* space between label and select */
+    margin-left: 20px;
 }
 
 #follow-distance {
@@ -344,7 +394,7 @@ button.toggle-active {
 .follow-distance label {
     left: 10px;
     font-size: 20px;
-    color: white; 
+    color: white; /* or whatever fits your theme */
     font-weight: bold;
 }
 
