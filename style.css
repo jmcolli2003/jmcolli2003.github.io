@@ -190,8 +190,8 @@ main {
 
 /* Control box on the left */
 #controls {
-    width: 40%;
-    height: 600px;
+    width: fit-content;
+    height: fit-content;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -203,10 +203,8 @@ main {
 
 /* Dashboard at the top of controls */
 #dashboard {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
+    position: relative;
+    margin: 20px;
     background-color: #ffffff;
     border-radius: 8px;
     padding: 20px;

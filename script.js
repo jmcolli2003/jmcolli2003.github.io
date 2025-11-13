@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!running) {
             running = true;
             updateFollowDistance();
+            updateSpeed();
             animate();
         }
     };
@@ -103,9 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateSpeed() {
         speed = 0;
+        if(running)
+        {
         if (tjas) speed += 4;
         if (cruise) speed += 2;
         if (!tjas && !cruise) speed = 1; // default slow speed
+        }
         updateSpeedometer();
     }
 
