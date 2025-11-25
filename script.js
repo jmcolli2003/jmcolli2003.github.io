@@ -2,12 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const lanes = document.querySelectorAll('.lane-marker');
     const mainCar = document.getElementById('main-car');
     const frontCar = document.getElementById('car-D');
+
     const distanceSelect = document.getElementById('follow-distance');
     const tjaStatusDisplay = document.getElementById('tja-status');
     const speedDisplay = document.getElementById('speed-value');
     const followDistanceControls = document.getElementById("follow-distance-control");
+
     const gasPedal = document.getElementById('gas-pedal');
     const gasPedalStatus = document.getElementById('gas-pedal-status');
+    const brakePedal = document.getElementById('brake-pedal');
 
     let speed = 0;
     let offset = 0;
@@ -20,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lane = false;
 
     let gasPedalPressed = false;
+    let brakePedalPressed = false;
     let baseSpeed = 0; // base speed from systems
     let acceleration = 0; // additional speed from gas pedal
 
@@ -103,7 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     function updateSpeed() {
+        if(!running || brakePedalPressed)
+        {
         speed = 0;
+        }
         if(running)
         {
         if (tjas) speed += 4;
@@ -117,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!running) return;
 
         // Handle gas pedal acceleration
-        if (gasPedalPressed && !tjas) {
+        if (gasPedalPressed && !tjas && !brakePedalPressed) {
             acceleration = Math.min(acceleration + 0.02, 5); // Max boost of 5 units
             const mainCarRect = mainCar.getBoundingClientRect();
             const roadRect = document.getElementById('road').getBoundingClientRect();
@@ -186,6 +193,23 @@ document.addEventListener('DOMContentLoaded', () => {
     gasPedal.addEventListener('mouseleave', () => {
         gasPedalPressed = false;
         gasPedalStatus.textContent = 'Release to slow down';
+    });
+
+    // Brake pedal functionality
+    brakePedal.addEventListener('mousedown', () => {
+        if (tjas) {
+            brakePedalPressed = true;
+            tjas = false;
+            cruise = false;
+
+            document.getElementById('toggle-tjas').classList.toggle('toggle-active', tjas);
+            followDistanceControls.style.display = "none";
+            document.getElementById('toggle-cruise').classList.toggle('toggle-active', cruise);
+
+            speed = 0;
+            updateDashboard();
+            updateSpeed();
+        }
     });
 
     updateFollowDistance();

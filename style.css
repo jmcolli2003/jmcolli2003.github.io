@@ -177,28 +177,29 @@ main {
 
 /* ================== Car Simulation ================== */
 #simulation-container {
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Changed from center */
     flex-wrap: nowrap;
-    width: 100%;
-    column-gap: 1%;
+    width: 95vw;
+    max-width: 1400px;
+    gap: 2%; /* Changed from column-gap */
     margin: 20px auto;
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 /* Control box on the left */
 #controls {
-    width: fit-content;
+    width: 450px; 
     height: fit-content;
-    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     gap: 10px;
     border-radius: 7px;
     background-color: #d3d3d3;
+    flex-shrink: 0; 
+    padding: 0; 
 }
 
 /* Dashboard at the top of controls */
@@ -287,7 +288,7 @@ main {
 }
 
 #gas-pedal {
-    width: 80%;
+    width: 100%;
     padding: 15px 20px;
     font-size: 18px;
     font-weight: bold;
@@ -326,23 +327,67 @@ main {
     text-align: center;
 }
 
+#brake-pedal {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #de3535;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+#brake-pedal:hover:not(:disabled) {
+    background-color: #b42a2a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#brake-pedal:active:not(:disabled) {
+    background-color: #992323;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#brake-pedal.disabled-pedal {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+#brake-pedal-status {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
+
 /* start and stop buttons */
 #start-stop {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 10px;
+    margin: 2px;
     position: relative;
 }
 
 #start {
     background-color: green;
     color: white;
+    border: none;
+    border-radius: 8px;
 }
 
 #stop {
     background-color: #e50000;
     color: white;
+    border: none;
+    border-radius: 8px;
 }
 
 /* toggles for TJA, ACC, LM */
@@ -361,12 +406,14 @@ button {
     font-size: 16px;
     cursor: pointer;
     margin: 10px;
+    border: 2px white;
+    border-radius: 8px;
 }
 
 button.toggle-active {
     background-color: #2196F3;  /* blue when active */
     color: white;
-    border: 2px solid grey;
+    border: 2px solid rgb(0, 17, 209);
 }
 
 /* follow distance selection */
@@ -386,7 +433,7 @@ button.toggle-active {
     cursor: pointer;
     justify-content: left;
     left: 5%;
-    width: 300px;
+    width: 90%;
 }
 
 .follow-distance label {
@@ -398,12 +445,14 @@ button.toggle-active {
 
 /* Road on the right */
 #road {
-    width: 68%;
+    flex: 1; 
+    min-width: 500px;
     height: 400px;
     position: relative;
     background-color: #555;
     border-radius: 7px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 /* White lane markers (horizontal dashed lines) */
@@ -415,7 +464,7 @@ button.toggle-active {
     background: repeating-linear-gradient(
         to right,
         white 0 40px,
-        transparent 40px 80px
+        transparent 40px 96px
     );
     opacity: 0.8;
 }
