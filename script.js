@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const brakePedal = document.getElementById('brake-pedal');
 
     let speed = 0;
+    let cruiseSpeed = 0;
+    let frontCarSpeed = 0;
     let offset = 0;
     let followDistance = 'medium'; // default
     let running = false;
@@ -62,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('toggle-cruise').onclick = () => {
         cruise = !cruise;
         updateSpeed();
+        cruiseSpeed = speed;
         document.getElementById('toggle-cruise').classList.toggle('toggle-active', cruise);
     };
 
@@ -107,25 +110,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     function updateSpeed() {
-        if(!running || brakePedalPressed)
+        if(running && !brakePedalPressed)
         {
-        speed = 0;
+            baseSpeed = 1; 
+            // if (tjas) baseSpeed += 4;
+            // if (cruise) baseSpeed += 2;
+            // if (!tjas && !cruise) baseSpeed = 1; // default slow speed
         }
-        if(running)
+        else
         {
-        if (tjas) speed += 4;
-        if (cruise) speed += 2;
-        if (!tjas && !cruise) speed = 1; // default slow speed
+            baseSpeed = 0;
         }
-        updateSpeedometer();
     }
 
     function animate() {
         if (!running) return;
 
         // Handle gas pedal acceleration
-        if (gasPedalPressed && !tjas && !brakePedalPressed) {
-            acceleration = Math.min(acceleration + 0.02, 5); // Max boost of 5 units
+        if (gasPedalPressed && !tjas) {
+            acceleration = Math.min(acceleration + 0.01, 5); // Max boost of 5 units
             const mainCarRect = mainCar.getBoundingClientRect();
             const roadRect = document.getElementById('road').getBoundingClientRect();
             let currentLeft = mainCarRect.left - roadRect.left;
@@ -136,19 +139,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (newLeftPercent < 70) {
                 mainCar.style.left = `${newLeftPercent}%`;
             }
-        } else {
-            acceleration = Math.max(acceleration - 0.01, 1); // Gradually decrease
+        } 
+
+        if (brakePedalPressed) 
+        {
+            baseSpeed = Math.max(baseSpeed - 0.01, 0);
+            acceleration = Math.max(acceleration - 0.01, 0);
         }
 
+        // Calculate total speed including acceleration
         speed = baseSpeed + acceleration;
-        updateSpeedometer();
+        const kmh = Math.round(speed * speedtoKmh);
+        speedDisplay.textContent = kmh;
 
         offset += speed;
         lanes.forEach(lane => {
             lane.style.backgroundPositionX = `-${offset}px`;
         });
        
-
         animationId = requestAnimationFrame(animate);
     }
 
@@ -171,12 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Function to update speedometer 
-    function updateSpeedometer(){
-        const kmh = Math.round(speed * speedtoKmh);
-        speedDisplay.textContent = kmh;
-    }
-
     // Gas pedal functionality
     gasPedal.addEventListener('mousedown', () => {
         if (!tjas) {
@@ -197,23 +199,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Brake pedal functionality
     brakePedal.addEventListener('mousedown', () => {
-        if (tjas) {
-            brakePedalPressed = true;
+        brakePedalPressed = true;
+        if (tjas || cruise) {
             tjas = false;
             cruise = false;
 
             document.getElementById('toggle-tjas').classList.toggle('toggle-active', tjas);
             followDistanceControls.style.display = "none";
             document.getElementById('toggle-cruise').classList.toggle('toggle-active', cruise);
-
-            speed = 0;
-            updateDashboard();
-            updateSpeed();
         }
+        updateDashboard();
+    });
+
+    brakePedal.addEventListener('mouseup', () => {
+        brakePedalPressed = false;
+    });
+
+    brakePedal.addEventListener('mouseleave', () => {
+        brakePedalPressed = false;
     });
 
     updateFollowDistance();
     updateSpeed();
     updateDashboard();
-    updateSpeedometer();
+    updateSpeed();
 });
